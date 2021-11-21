@@ -1,0 +1,2 @@
+# coding-quiz
+A multiple choice quiz that, on pressing a start button, should generate a random question for the user about coding, each with 4 multiple choice answers.  The game should let the user know if they choose the correct or incorrect answer. All while there is a timer counting down how long the user has left to finish the quiz. If the user finishes in the allotted time, they should give their initials and their score should be stored in local storage and kept to view from the view high score link on the page. 
