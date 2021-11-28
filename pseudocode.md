@@ -59,4 +59,13 @@ function startGame() {......}
 
 - select everything
 
-    - start, end, timer, questions, correct, 
+    - start, end, timer, questions, correct 
+
+create timer function
+    - call when start quiz clicked
+
+start quiz clicked:
+
+    - hide start screen title, text, button
+    -create question h2, question list, 
+

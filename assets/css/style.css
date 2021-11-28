@@ -10,7 +10,7 @@ html {
     padding: 1rem;
   }
 
-.start-margin {
+.top-margin {
   margin-top: 6rem
 }
 
@@ -29,7 +29,7 @@ html {
     border-radius: 7px;
     background-color: #8ADEB4;
     color: white;
-    border: none;
+    /* border: none; */
 }
 
 h1 {
