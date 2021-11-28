@@ -59,13 +59,14 @@ function startGame() {......}
 
 - select everything
 
-    - start, end, timer, questions, correct 
+- create variables
 
-create timer function
-    - call when start quiz clicked
+On start click, 
+    add hide class to welcome div to clear screen
 
-start quiz clicked:
+    timer started
 
-    - hide start screen title, text, button
-    -create question h2, question list, 
+- create h2, textContent for questions[0]
+    create buttons, textContent for questions[1]
+    validate on click, if questions[2], validate correct, else wrong
 

@@ -14,13 +14,14 @@ html {
   margin-top: 6rem
 }
 
-.start-center {
+/* .start-center {
     text-align: center;
-}
+} */
 
 .wrapper {
     margin: 100px auto 0 auto;
     max-width: 600px;
+    text-align: center;
   }
 
 .start-button {
@@ -39,4 +40,8 @@ h1 {
 p {
     font-size: 2rem;
     margin-top: 2rem;
+}
+
+.hide {
+    display: none;
 }
