@@ -1,0 +1,42 @@
+html {
+    font-size: 62.5%;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    padding: 1rem;
+  }
+
+.start-margin {
+  margin-top: 6rem
+}
+
+.start-center {
+    text-align: center;
+}
+
+.wrapper {
+    margin: 100px auto 0 auto;
+    max-width: 600px;
+  }
+
+.start-button {
+    padding: 0.4rem 2rem;
+    font-size: 3rem;
+    border-radius: 7px;
+    background-color: #8ADEB4;
+    color: white;
+    border: none;
+}
+
+h1 {
+    font-size: 4.5rem;
+}
+
+p {
+    font-size: 2rem;
+    margin-top: 2rem;
+}
