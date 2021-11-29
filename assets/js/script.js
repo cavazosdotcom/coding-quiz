@@ -36,6 +36,7 @@ var timer = document.querySelector("#timer");
 var questionsEl = document.querySelector("#questions");
 var welcomeEl = document.querySelector("#welcome");
 
+
 var timeLeft;
 var timerInterval;
 var buttonEl;
@@ -62,8 +63,14 @@ function countdown() {
 function hideStart() {
     var element = document.getElementById("welcome");
     element.classList.add("hide");
-  }
+}
 
+function renderQuestion() {
+    questionsEl = document.createElement("button");
+    questionsEl.textContent = JSON.stringify(questions[questionPointer]);
+    console.log(questionsEl);
+    
+}
 // function renderQuestion(questionIndex) {
 
 // }
@@ -72,6 +79,7 @@ function startQuiz() {
     // welcomeEl = document.setAttribute()
     hideStart();
     countdown();
+    renderQuestion();
 }
 
 function nextQuestion() {
