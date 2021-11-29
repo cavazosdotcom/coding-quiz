@@ -2,7 +2,7 @@ var questions = [
     {
         question: "Which of these is NOT one of the original 3 starting Pokémon?",
         choices: ["Charmander", "Piplup", "Bulbasuar", "Squirtle"],
-        answer: "Piplup"
+        correct: "Piplup"
     },
     {
         question: "How many total Pokémon are there as of 2021?",
@@ -66,11 +66,24 @@ function hideStart() {
 }
 
 function renderQuestion() {
-    questionsEl = document.createElement("button");
-    questionsEl.textContent = JSON.stringify(questions[questionPointer]);
-    console.log(questionsEl);
-    document.body.appendChild(questionsEl);
-}
+    for (var i = 0; i < questions.length; i++) {
+        questionsEl = document.createElement("button");
+        questionsEl.textContent = (questions[questionPointer].choices[0]);
+        console.log(questionsEl);
+        document.body.appendChild(questionsEl);
+    }
+    }
+
+// function renderQuestion () {
+//     userQuestion = document.createElement('h2');
+//     userChoices = document.createElement('button');
+//     userQuestion.textContent = (questions[questionPointer].question);
+//     userChoices.textContent = (questions[questionPointer].choices[0]);
+//     console.log(userQuestion);
+//     console.log(userChoices);
+//     document.body.appendChild(userQuestion);
+//     document.body.appendChild(userChoices);
+// }
 
 function startQuiz() {
     // welcomeEl = document.setAttribute()
