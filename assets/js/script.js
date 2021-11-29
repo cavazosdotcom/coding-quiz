@@ -69,11 +69,8 @@ function renderQuestion() {
     questionsEl = document.createElement("button");
     questionsEl.textContent = JSON.stringify(questions[questionPointer]);
     console.log(questionsEl);
-    
+    document.body.appendChild(questionsEl);
 }
-// function renderQuestion(questionIndex) {
-
-// }
 
 function startQuiz() {
     // welcomeEl = document.setAttribute()
