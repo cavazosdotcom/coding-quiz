@@ -86,7 +86,7 @@ function startQuiz() {
     hideStart();
     countdown();
     renderQuestion();
-
+    answerQuestion();
 }
 
 function nextQuestion() {
@@ -94,7 +94,7 @@ function nextQuestion() {
 }
 
 function answerQuestion(event) {
-    if (event.target.value === questions[questionPointer].correct) {
+    if (event.target === questions[questionPointer].correct) {
         console.log("Correct");
     } else console.log("Wrong");    
 }
