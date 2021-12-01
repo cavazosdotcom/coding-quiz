@@ -27,8 +27,6 @@ var questions = [
 
 ];
 
-var score = 0;
-var questionPointer = 0;
 
 
 var startQuizButton = document.querySelector(".start-button");
@@ -48,14 +46,17 @@ var state;
 
 var userQuestion;
 var userChoices;
+var userChoice = [];
 var ulCreate;
+
+var score = 0;
+var questionPointer = 0;
 
 function countdown() {
     timeLeft = 10
     timerInterval = setInterval(function() {
         timeLeft--;
-        timer.textContent = "Time: " + timeLeft;
-    
+        timer.textContent = `Time: ${timeLeft}`;
         if(timeLeft === 0) {
           clearInterval(timerInterval);
         }
@@ -75,28 +76,34 @@ function renderQuestion() {
     for (var i = 0; i < questions[questionPointer].choices.length; i++) {
         userChoices = document.createElement('button');
         userChoices.textContent = questions[questionPointer].choices[i];
+        userChoices.setAttribute('value', questions[questionPointer].choices[i]);
         questionsEl.appendChild(userChoices);
+        userChoices.addEventListener("click", answerQuestion);
         userChoices.addEventListener("click", renderQuestion);
     }
-    nextQuestion();    
+    // nextQuestion();    
 } 
+
 
 function startQuiz() {
     // welcomeEl = document.setAttribute()
     hideStart();
     countdown();
     renderQuestion();
-    answerQuestion();
-}
-
-function nextQuestion() {
-    questionPointer++;
 }
 
 function answerQuestion(event) {
-    if (event.target === questions[questionPointer].correct) {
+    // console.log(userQuestion);
+    // console.log(userChoices);
+    // console.log(event.target.value)
+    console.log(questions[questionPointer].correct);
+    console.log(`event:${event.target.value}`);
+    if (event.target.value === questions[questionPointer].correct) {
         console.log("Correct");
-    } else console.log("Wrong");    
+    } else { 
+        console.log("Wrong");    
+    }
+    questionPointer++;
 }
 startQuizButton.addEventListener("click", startQuiz);
 // questionsEl.addEventListener("click", answerQuestion);
