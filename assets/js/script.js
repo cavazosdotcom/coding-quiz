@@ -79,25 +79,7 @@ function renderQuestion() {
         userChoices.addEventListener("click", renderQuestion);
     }
     nextQuestion();    
-}
-// function renderQuestion () {
-//     userQuestion = document.createElement('h2');
-//     userChoices = document.createElement('button');
-//     userQuestion.textContent = (questions[questionPointer].question);
-//     userChoices.textContent = (questions[questionPointer].choices[0]);
-//     console.log(userQuestion);
-//     console.log(userChoices);
-//     document.body.appendChild(userQuestion);
-//     document.body.appendChild(userChoices);
-
-    // nextQuestion();
-    // userQuestion.textContent = (questions[questionPointer].question);
-    // userChoices.textContent = (questions[questionPointer].choices[0]);
-    // console.log(userQuestion);
-    // console.log(userChoices);
-    // document.body.appendChild(userQuestion);
-    // document.body.appendChild(userChoices);
-// }
+} 
 
 function startQuiz() {
     // welcomeEl = document.setAttribute()
@@ -111,17 +93,10 @@ function nextQuestion() {
     questionPointer++;
 }
 
-// function answerQuestion(event) {
-//     buttonEl = event.target;
-//     answer = buttonEl.dataset.answer;
-//     console.log(answer);
-
-//     var currentQuestion = questions[questionPointer];
-//         if (answer === currentQuestion.correct){
-
-//         }
-//         nextQuestion();
-// }
-
+function answerQuestion(event) {
+    if (event.target.value === questions[questionPointer].correct) {
+        console.log("Correct");
+    } else console.log("Wrong");    
+}
 startQuizButton.addEventListener("click", startQuiz);
 // questionsEl.addEventListener("click", answerQuestion);
