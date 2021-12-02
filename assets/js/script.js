@@ -16,7 +16,7 @@ var questions = [
     },
     {
         question: "Which of these Pokémon types are SUPER effective against ALL THE OTHER types listed?",
-        choices: ["dragon", "dark", "fairy", "fighting"],
+        choices: ["Dragon", "Dark", "Fairy", "Fighting"],
         correct: "fairy"
     },
     {
@@ -53,7 +53,7 @@ var score = 0;
 var questionPointer = 0;
 
 function countdown() {
-    timeLeft = 10
+    timeLeft = 60
     timerInterval = setInterval(function() {
         timeLeft--;
         timer.textContent = `Time: ${timeLeft}`;
@@ -101,7 +101,8 @@ function answerQuestion(event) {
     if (event.target.value === questions[questionPointer].correct) {
         console.log("Correct");
     } else { 
-        console.log("Wrong");    
+        timeLeft = timeLeft - 10    
+        console.log("Wrong");
     }
     questionPointer++;
 }
