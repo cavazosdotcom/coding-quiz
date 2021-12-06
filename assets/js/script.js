@@ -50,8 +50,8 @@ var userChoices;
 
 var score = 0;
 var questionPointer = 0;
-var win = false;
-var lose = false;
+var win;
+var lose;
 
 function countdown() {
     timeLeft = 30;
@@ -61,7 +61,8 @@ function countdown() {
         if (timeLeft <= 0) {
             timer.textContent = `Time: 0`;
             clearInterval(timerInterval);
-            loseQuiz();
+            checkWin()
+            endQuiz();
         } 
       }, 1000);
 }
@@ -72,6 +73,7 @@ function hideStart() {
 }
 
 function renderQuestion() {
+
     questionsEl.innerHTML = '';
     userQuestion = document.createElement('h2');
     userQuestion.textContent = questions[questionPointer].question;
@@ -84,16 +86,19 @@ function renderQuestion() {
         userChoices.setAttribute('value', questions[questionPointer].choices[i]);
         questionsEl.appendChild(userChoices);
         userChoices.addEventListener("click", answerQuestion);
+        // userChoices.addEventListener("click", renderQuestion);
         if (questionPointer === questions.length - 1){
-            userChoices.addEventListener("click", winQuiz);
+            userChoices.addEventListener("click", endQuiz);
         } else { 
             userChoices.addEventListener("click", renderQuestion);
-        }
-    };  
+        };  
+    };    
 }; 
 
 
 function startQuiz() {
+    win = false;
+    lose = false;
     hideStart();
     countdown();
     renderQuestion();
@@ -126,28 +131,57 @@ function buttonRestart() {
     restartButton.addEventListener("click", restartQuiz);
 };
 
-function loseQuiz() {
-    lose = true;
+// TODO:
+// Fix so lose game on last question if win condition not met
+// function loseQuiz() {
+//     lose = true;
+//     questionsEl.innerHTML = '';
+//     console.log("Uh oh! You ran out of time... GAME OVER!");
+//     var gameOver = document.createElement ('h2');
+//     gameOver.textContent = "Game Over!";
+//     questionsEl.appendChild(gameOver);
+//     buttonRestart();
+// };
+
+// function winQuiz() {
+//     win = true;
+//     clearInterval(timerInterval);
+//     questionsEl.innerHTML = '';
+//     var winGame = document.createElement ('h2');
+//     winGame.textContent = "You Win!";
+//     questionsEl.appendChild(winGame);
+//     score = timeLeft;
+//     console.log(score);
+// };
+
+function endQuiz() {
+    checkWin();
     questionsEl.innerHTML = '';
-    console.log("Uh oh! You ran out of time... GAME OVER!");
-    var gameOver = document.createElement ('h2');
-    gameOver.textContent = "Game Over!";
-    questionsEl.appendChild(gameOver);
-    buttonRestart();
+    if (lose === true) {
+        lose = false;
+        console.log("Uh oh! You ran out of time... GAME OVER!");
+        var gameOver = document.createElement ('h2');
+        gameOver.textContent = "Game Over!";
+        questionsEl.appendChild(gameOver);
+        buttonRestart();
+    } else if (win === true) {
+        win = false;
+        clearInterval(timerInterval);
+        var winGame = document.createElement ('h2');
+        winGame.textContent = "You Win!";
+        questionsEl.appendChild(winGame);
+        score = timeLeft;
+        console.log(score);
+    }
+}
+
+function checkWin(){
+    if (timeLeft > 0) {
+        win = true;
+    } else {
+        lose = true;
+    };
 };
-
-function winQuiz() {
-    win = true;
-    clearInterval(timerInterval);
-    questionsEl.innerHTML = '';
-    var winGame = document.createElement ('h2');
-    winGame.textContent = "You Win!";
-    questionsEl.appendChild(winGame);
-    score = timeLeft;
-    console.log(score);
-};
-
-
 // function endGame() {
 //     if (win === true) {
 //         questionsEl.innerHTML = '';
@@ -168,7 +202,3 @@ function winQuiz() {
 // }
 
 startQuizButton.addEventListener("click", startQuiz);
-// questionsEl.addEventListener("click", answerQuestion);
-
-// TODO:
-// Fix end of game so last button loses game if it makes time go under 0
