@@ -41,31 +41,41 @@ var timerInterval;
 var buttonEl;
 var answer;
 var hidden;
-var visible;
-var state;
+// var visible;
+// var state;
 
 var userQuestion;
 var userChoices;
-var userChoice = [];
-var ulCreate;
+// var userChoice = [];
+// var ulCreate;
 
 var score = 0;
 var questionPointer = 0;
+var win = false;
+var lose = false;
 
 function countdown() {
-    timeLeft = 60
+    timeLeft = 5
     timerInterval = setInterval(function() {
         timeLeft--;
         timer.textContent = `Time: ${timeLeft}`;
+        if (timeLeft < 0) {
+            timer.textContent = `Time: 0`;
+            clearInterval(timerInterval)
+            lose = true;
+            endGame();
+        }
         if(timeLeft === 0) {
-          clearInterval(timerInterval);
+            clearInterval(timerInterval);
+            lose = true;
+            endGame();
         }
       }, 1000);
 }
 
 function hideStart() {
-    var element = document.getElementById("welcome");
-    element.classList.add("hide");
+    hidden = document.getElementById("welcome");
+    hidden.classList.add("hide");
 }
 
 function renderQuestion() {
@@ -90,21 +100,43 @@ function startQuiz() {
     hideStart();
     countdown();
     renderQuestion();
+    // endGame();
 }
 
 function answerQuestion(event) {
-    // console.log(userQuestion);
-    // console.log(userChoices);
-    // console.log(event.target.value)
     console.log(questions[questionPointer].correct);
     console.log(`event:${event.target.value}`);
     if (event.target.value === questions[questionPointer].correct) {
         console.log("Correct");
+
     } else { 
         timeLeft = timeLeft - 10    
         console.log("Wrong");
     }
     questionPointer++;
 }
+
+function restartGame() {
+    questionsEl.innerHTML = '';
+    questionPointer = 0;
+    hidden = document.getElementById("welcome");
+    hidden.classList.remove("hide");
+
+}
+
+function endGame() {
+    if (lose === true) {
+    questionsEl.innerHTML = '';
+    console.log("Uh oh! You ran out of time... GAME OVER!");
+    var restart = document.createElement ('h2')
+    restart.textContent = "Game Over!"
+    var restartButton = document.createElement ('button');
+    restartButton.textContent = "Restart";
+    questionsEl.appendChild(restart);
+    questionsEl.appendChild(restartButton);
+    restartButton.addEventListener("click", restartGame);
+    }
+}
+
 startQuizButton.addEventListener("click", startQuiz);
 // questionsEl.addEventListener("click", answerQuestion);
