@@ -40,6 +40,7 @@ var timerInterval;
 var buttonEl;
 var answer;
 var hidden;
+var highscore;
 // var visible;
 // var state;
 
@@ -54,23 +55,22 @@ var win;
 var lose;
 
 function countdown() {
-    timeLeft = 30;
+    timeLeft = 100;
     timerInterval = setInterval(function() {
         timeLeft--;
         timer.textContent = `Time: ${timeLeft}`;
         if (timeLeft <= 0) {
             timer.textContent = `Time: 0`;
             clearInterval(timerInterval);
-            checkWin()
             endQuiz();
-        } 
+        }; 
       }, 1000);
 }
 
 function hideStart() {
     hidden = document.getElementById("welcome");
     hidden.classList.add("hide");
-}
+};
 
 function renderQuestion() {
 
@@ -86,7 +86,6 @@ function renderQuestion() {
         userChoices.setAttribute('value', questions[questionPointer].choices[i]);
         questionsEl.appendChild(userChoices);
         userChoices.addEventListener("click", answerQuestion);
-        // userChoices.addEventListener("click", renderQuestion);
         if (questionPointer === questions.length - 1){
             userChoices.addEventListener("click", endQuiz);
         } else { 
@@ -97,8 +96,6 @@ function renderQuestion() {
 
 
 function startQuiz() {
-    win = false;
-    lose = false;
     hideStart();
     countdown();
     renderQuestion();
@@ -126,13 +123,12 @@ function restartQuiz() {
 
 function buttonRestart() {
     var restartButton = document.createElement ('button');
+    // restartButton.classList.add("restart-button");
     restartButton.textContent = "Restart";
     questionsEl.appendChild(restartButton);
     restartButton.addEventListener("click", restartQuiz);
 };
 
-// TODO:
-// Fix so lose game on last question if win condition not met
 // function loseQuiz() {
 //     lose = true;
 //     questionsEl.innerHTML = '';
@@ -154,6 +150,7 @@ function buttonRestart() {
 //     console.log(score);
 // };
 
+// TODO: On endquiz, clear the time interval
 function endQuiz() {
     checkWin();
     questionsEl.innerHTML = '';
@@ -170,8 +167,11 @@ function endQuiz() {
         var winGame = document.createElement ('h2');
         winGame.textContent = "You Win!";
         questionsEl.appendChild(winGame);
-        score = timeLeft;
-        console.log(score);
+        // score = timeLeft;
+        // console.log(score);
+        setWin();
+        userInput();
+        buttonRestart();
     }
 }
 
@@ -182,6 +182,47 @@ function checkWin(){
         lose = true;
     };
 };
+
+// TODO: create input for user initials so sccore can be saved with initials
+// and stuff
+function userInput(){
+
+    label = document.createElement('label');
+    userInitials = document.createElement('input');
+    
+    label.textContent = `Initials: `;
+    
+    questionsEl.appendChild(label);
+    questionsEl.appendChild(userInitials);
+
+    submitButton = document.createElement('button');
+    submitButton.textContent = "Submit";
+    questionsEl.appendChild(submitButton);
+    
+    submitButton.addEventListener("click", function() {
+        var initials = userInitials.value;
+
+        if (initials === null) {
+            console.log('No value entered');
+
+        } else {
+            userScore = {
+                initials: initials,
+                score: timeLeft
+            }
+        }
+        console.log(userScore);
+    })
+};
+
+function setWin(){
+    localStorage.setItem("userScore", timeLeft);
+};
+
+function getWin(){
+    // var storedScores = localStorage.getItem("userScore");
+    
+}
 // function endGame() {
 //     if (win === true) {
 //         questionsEl.innerHTML = '';

@@ -33,6 +33,11 @@ button {
     margin: .5rem;
 }
 
+.restart-button {
+    display: block;
+    margin: 2rem 0;
+}
+
 h1 {
     font-size: 4.5rem;
 }
@@ -49,4 +54,12 @@ h2 {
 
 .hide {
     display: none;
+}
+
+label {
+    font-size: 2rem;
+}
+
+input {
+    font-size: 2rem;
 }
