@@ -17,13 +17,18 @@ var questions = [
     {
         question: "Which of these Pokémon types are SUPER effective against ALL THE OTHER types listed?",
         choices: ["Dragon", "Dark", "Fairy", "Fighting"],
-        correct: "fairy"
+        correct: "Fairy"
     },
     {
         question: "Which of these Pokémon are Legendary/Mythical?",
         choices: ["Rayquaza", "Dragonite", "Charizard", "Tyranitar"],
         correct: "Rayquaza"
     },
+    // {
+    //     question: "What's my fav Pokemon?",
+    //     choices: ["Cyndaquil", "Pikachu", "Heracross", "Charmander"],
+    //     correct: "Cyndaquil"
+    // },
 
 ];
 
@@ -55,21 +60,31 @@ var win = false;
 var lose = false;
 
 function countdown() {
-    timeLeft = 5
+    timeLeft = 30;
     timerInterval = setInterval(function() {
         timeLeft--;
         timer.textContent = `Time: ${timeLeft}`;
-        if (timeLeft < 0) {
+        if (timeLeft <= 0) {
             timer.textContent = `Time: 0`;
-            clearInterval(timerInterval)
-            lose = true;
-            endGame();
-        }
-        if(timeLeft === 0) {
             clearInterval(timerInterval);
-            lose = true;
-            endGame();
-        }
+            loseQuiz();
+        } 
+        // if (timeLeft < 0) {
+        //     timer.textContent = `Time: 0`;
+        //     clearInterval(timerInterval)
+        //     lose = true;
+        //     endGame();
+        // }
+        // if(timeLeft === 0) {
+        //     clearInterval(timerInterval);
+        //     lose = true;
+        //     endGame();
+        // }
+        // if (win === true) {
+        //     score = timeLeft;
+        //     clearInterval(timerInterval);
+        //     console.log(score);
+        // }
       }, 1000);
 }
 
@@ -79,6 +94,7 @@ function hideStart() {
 }
 
 function renderQuestion() {
+    // console.log(questionPointer);
     questionsEl.innerHTML = '';
     userQuestion = document.createElement('h2');
     userQuestion.textContent = questions[questionPointer].question;
@@ -89,10 +105,14 @@ function renderQuestion() {
         userChoices.setAttribute('value', questions[questionPointer].choices[i]);
         questionsEl.appendChild(userChoices);
         userChoices.addEventListener("click", answerQuestion);
-        userChoices.addEventListener("click", renderQuestion);
-    }
-    // nextQuestion();    
-} 
+        console.log(questionPointer, questions.length);
+        if (questionPointer === questions.length - 1){
+            userChoices.addEventListener("click", winQuiz);
+        } else { 
+            userChoices.addEventListener("click", renderQuestion);
+        }
+    };  
+}; 
 
 
 function startQuiz() {
@@ -100,8 +120,7 @@ function startQuiz() {
     hideStart();
     countdown();
     renderQuestion();
-    // endGame();
-}
+};
 
 function answerQuestion(event) {
     console.log(questions[questionPointer].correct);
@@ -114,29 +133,59 @@ function answerQuestion(event) {
         console.log("Wrong");
     }
     questionPointer++;
-}
+};
 
-function restartGame() {
+function restartQuiz() {
     questionsEl.innerHTML = '';
     questionPointer = 0;
     hidden = document.getElementById("welcome");
     hidden.classList.remove("hide");
+};
 
-}
-
-function endGame() {
-    if (lose === true) {
-    questionsEl.innerHTML = '';
-    console.log("Uh oh! You ran out of time... GAME OVER!");
-    var restart = document.createElement ('h2')
-    restart.textContent = "Game Over!"
+function buttonRestart() {
     var restartButton = document.createElement ('button');
     restartButton.textContent = "Restart";
-    questionsEl.appendChild(restart);
     questionsEl.appendChild(restartButton);
-    restartButton.addEventListener("click", restartGame);
-    }
-}
+    restartButton.addEventListener("click", restartQuiz);
+};
+
+function loseQuiz() {
+    lose = true;
+    questionsEl.innerHTML = '';
+    console.log("Uh oh! You ran out of time... GAME OVER!");
+    var gameOver = document.createElement ('h2');
+    gameOver.textContent = "Game Over!";
+    questionsEl.appendChild(gameOver);
+    buttonRestart();
+};
+
+function winQuiz() {
+    win = true;
+    questionsEl.innerHTML = '';
+    var winGame = document.createElement ('h2');
+    winGame.textContent = "You Win!";
+    questionsEl.appendChild(winGame);
+    score = timeLeft;
+    console.log(score);
+};
+// function endGame() {
+//     if (win === true) {
+//         questionsEl.innerHTML = '';
+//         console.log("Congrats! You win!");
+//     } else if (lose === true) {
+//         lose = false;
+//         questionsEl.innerHTML = '';
+//         console.log("Uh oh! You ran out of time... GAME OVER!");
+//         var restart = document.createElement ('h2')
+//         restart.textContent = "Game Over!"
+//         var restartButton = document.createElement ('button');
+//         restartButton.textContent = "Restart";
+//         questionsEl.appendChild(restart);
+//         questionsEl.appendChild(restartButton);
+//         restartButton.addEventListener("click", restartGame);
+//     };
+    
+// }
 
 startQuizButton.addEventListener("click", startQuiz);
 // questionsEl.addEventListener("click", answerQuestion);
