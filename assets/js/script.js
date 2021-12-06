@@ -24,12 +24,6 @@ var questions = [
         choices: ["Rayquaza", "Dragonite", "Charizard", "Tyranitar"],
         correct: "Rayquaza"
     },
-    // {
-    //     question: "What's my fav Pokemon?",
-    //     choices: ["Cyndaquil", "Pikachu", "Heracross", "Charmander"],
-    //     correct: "Cyndaquil"
-    // },
-
 ];
 
 
@@ -69,22 +63,6 @@ function countdown() {
             clearInterval(timerInterval);
             loseQuiz();
         } 
-        // if (timeLeft < 0) {
-        //     timer.textContent = `Time: 0`;
-        //     clearInterval(timerInterval)
-        //     lose = true;
-        //     endGame();
-        // }
-        // if(timeLeft === 0) {
-        //     clearInterval(timerInterval);
-        //     lose = true;
-        //     endGame();
-        // }
-        // if (win === true) {
-        //     score = timeLeft;
-        //     clearInterval(timerInterval);
-        //     console.log(score);
-        // }
       }, 1000);
 }
 
@@ -94,18 +72,18 @@ function hideStart() {
 }
 
 function renderQuestion() {
-    // console.log(questionPointer);
     questionsEl.innerHTML = '';
     userQuestion = document.createElement('h2');
     userQuestion.textContent = questions[questionPointer].question;
     questionsEl.appendChild(userQuestion);
+    questionsEl.classList.add('wrapper');
     for (var i = 0; i < questions[questionPointer].choices.length; i++) {
         userChoices = document.createElement('button');
+        userChoices.classList.add('choice-buttons');
         userChoices.textContent = questions[questionPointer].choices[i];
         userChoices.setAttribute('value', questions[questionPointer].choices[i]);
         questionsEl.appendChild(userChoices);
         userChoices.addEventListener("click", answerQuestion);
-        console.log(questionPointer, questions.length);
         if (questionPointer === questions.length - 1){
             userChoices.addEventListener("click", winQuiz);
         } else { 
@@ -116,7 +94,6 @@ function renderQuestion() {
 
 
 function startQuiz() {
-    // welcomeEl = document.setAttribute()
     hideStart();
     countdown();
     renderQuestion();
@@ -161,6 +138,7 @@ function loseQuiz() {
 
 function winQuiz() {
     win = true;
+    clearInterval(timerInterval);
     questionsEl.innerHTML = '';
     var winGame = document.createElement ('h2');
     winGame.textContent = "You Win!";
@@ -168,6 +146,8 @@ function winQuiz() {
     score = timeLeft;
     console.log(score);
 };
+
+
 // function endGame() {
 //     if (win === true) {
 //         questionsEl.innerHTML = '';
@@ -189,3 +169,6 @@ function winQuiz() {
 
 startQuizButton.addEventListener("click", startQuiz);
 // questionsEl.addEventListener("click", answerQuestion);
+
+// TODO:
+// Fix end of game so last button loses game if it makes time go under 0

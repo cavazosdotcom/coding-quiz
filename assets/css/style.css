@@ -14,23 +14,23 @@ html {
   margin-top: 6rem
 }
 
-/* .start-center {
-    text-align: center;
-} */
-
 .wrapper {
     margin: 100px auto 0 auto;
     max-width: 600px;
     text-align: center;
   }
 
-.start-button {
+button {
     padding: 0.4rem 2rem;
     font-size: 3rem;
     border-radius: 7px;
     background-color: #8ADEB4;
     color: white;
-    /* border: none; */
+}
+
+.choice-buttons {
+    display:block;
+    margin: .5rem;
 }
 
 h1 {
@@ -40,6 +40,11 @@ h1 {
 p {
     font-size: 2rem;
     margin-top: 2rem;
+}
+
+h2 {
+    font-size: 3rem;
+    margin-bottom: 4rem;
 }
 
 .hide {
