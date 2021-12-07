@@ -33,6 +33,7 @@ var timer = document.querySelector("#timer");
 var questionsEl = document.querySelector("#question-div");
 var questionsUl = document.querySelector("question-ul");
 var welcomeEl = document.querySelector("#welcome");
+// var highscoreList = document.querySelector("#highscore-list");
 
 
 var timeLeft;
@@ -41,11 +42,13 @@ var buttonEl;
 var answer;
 var hidden;
 var highscore;
+var liEl;
 // var visible;
 // var state;
 
 var userQuestion;
 var userChoices;
+var allScores;
 // var userChoice = [];
 // var ulCreate;
 
@@ -169,9 +172,9 @@ function endQuiz() {
         questionsEl.appendChild(winGame);
         // score = timeLeft;
         // console.log(score);
-        setWin();
         userInput();
         buttonRestart();
+        // setWin();
     }
 }
 
@@ -188,35 +191,83 @@ function checkWin(){
 function userInput(){
 
     label = document.createElement('label');
-    userInitials = document.createElement('input');
+    initialsInput = document.createElement('input');
     
+    // label.classList.add("block");
+    // initialsInput.classList.add("block");
+
     label.textContent = `Initials: `;
     
     questionsEl.appendChild(label);
-    questionsEl.appendChild(userInitials);
+    questionsEl.appendChild(initialsInput);
 
     submitButton = document.createElement('button');
     submitButton.textContent = "Submit";
     questionsEl.appendChild(submitButton);
     
     submitButton.addEventListener("click", function() {
-        var initials = userInitials.value;
+        var userInitials = initialsInput.value;
 
-        if (initials === null) {
+        
+        // allScores = [JSON.parse(localStorage.getItem("allStoredScores"))];
+        
+
+        if (userInitials === "") {
             console.log('No value entered');
 
         } else {
             userScore = {
-                initials: initials,
+                initials: userInitials,
                 score: timeLeft
             }
         }
-        console.log(userScore);
+        // localStorage.setItem("storedScore", JSON.stringify(userScore));
+        // allScores.push(userScore);
+        // localStorage.setItem("allStoredScores", JSON.stringify(allScores));
+        // console.log(allScores);
+        
+        
+        // setScore();
+        
+        
+        // localStorage.setItem("storedInitials", userScore.initials);
+        
+        
+        // console.log(userScore);
+        
+        // var userScores = localStorage.getItem("userScore");
+        // if (userScores === null){
+            //     userScores = [];
+            // } else {
+                //     userScores = JSON.parse(userScores);
+                //     console.log(JSON.stringify(userScore.initials));
+                //     console.log(userScore.score);
+                //     console.log(userScores);
+                // }
+                // userScores.push(userScore);
+                // var newScore = JSON.stringify(userScores);
+                // localStorage.setItem("userScores", newScore);
+                
+                
     })
 };
+    
+        
+// function setScore(){
+//     var lastScore = JSON.parse(localStorage.getItem("storedScore"));
+//     console.log(lastScore);
+//     // console.log(allScores);
+//     for (var i = 0; i < 5; i++){
+//         liEl = document.createElement("li");
+//         liEl.textContent = lastScore[i].initials + ": " + lastScore[i].score;
+//         highscoreList.appendChild(liEl);
+//     };
+// };
+
+
 
 function setWin(){
-    localStorage.setItem("userScore", timeLeft);
+    localStorage.setItem("storedScore", timeLeft);
 };
 
 function getWin(){
