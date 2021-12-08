@@ -41,7 +41,7 @@ var timerInterval;
 var buttonEl;
 var answer;
 var hidden;
-var highscore;
+var highscores = [];
 var liEl;
 // var visible;
 // var state;
@@ -188,7 +188,10 @@ function checkWin(){
 
 // TODO: create input for user initials so sccore can be saved with initials
 // and stuff
+highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+
 function userInput(){
+
 
     label = document.createElement('label');
     initialsInput = document.createElement('input');
@@ -206,21 +209,25 @@ function userInput(){
     questionsEl.appendChild(submitButton);
     
     submitButton.addEventListener("click", function() {
+        
         var userInitials = initialsInput.value;
 
         
-        // allScores = [JSON.parse(localStorage.getItem("allStoredScores"))];
-        
-
         if (userInitials === "") {
             console.log('No value entered');
-
+            // return userInput();
         } else {
             userScore = {
                 initials: userInitials,
                 score: timeLeft
             }
         }
+
+        highscores.push(userScore);
+
+        localStorage.setItem("highscores", JSON.stringify(highscores));
+
+        console.log(highscores);
         // localStorage.setItem("storedScore", JSON.stringify(userScore));
         // allScores.push(userScore);
         // localStorage.setItem("allStoredScores", JSON.stringify(allScores));
