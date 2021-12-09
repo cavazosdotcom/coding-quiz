@@ -1,3 +1,12 @@
+// TODO: Fix so highscore page can go back after clearing the local storage
+// Add single user score to show underneath highscores
+// Fix submit score button so it only happens once, so user can't submit same score infinite times
+// Add text showing user their score at end, and after score submit thank them
+// Clear time interval when endQuiz is called
+// Have restart button refresh page instead of just hiding and reshowing, OR reset timeInterval when restarted
+// Put submit and restart buttons underneath the initials input box
+
+
 var questions = [
     {
         question: "Which of these is NOT one of the original 3 starting Pokémon?",
@@ -132,26 +141,6 @@ function buttonRestart() {
     restartButton.addEventListener("click", restartQuiz);
 };
 
-// function loseQuiz() {
-//     lose = true;
-//     questionsEl.innerHTML = '';
-//     console.log("Uh oh! You ran out of time... GAME OVER!");
-//     var gameOver = document.createElement ('h2');
-//     gameOver.textContent = "Game Over!";
-//     questionsEl.appendChild(gameOver);
-//     buttonRestart();
-// };
-
-// function winQuiz() {
-//     win = true;
-//     clearInterval(timerInterval);
-//     questionsEl.innerHTML = '';
-//     var winGame = document.createElement ('h2');
-//     winGame.textContent = "You Win!";
-//     questionsEl.appendChild(winGame);
-//     score = timeLeft;
-//     console.log(score);
-// };
 
 // TODO: On endquiz, clear the time interval
 function endQuiz() {
@@ -186,8 +175,9 @@ function checkWin(){
     };
 };
 
-// TODO: create input for user initials so sccore can be saved with initials
-// and stuff
+// TODO: add text showing user their score at end, and after score submit thank them
+
+// TODO: make it so submit oinly happens once for score
 highscores = JSON.parse(localStorage.getItem('highscores')) || [];
 
 function userInput(){
@@ -205,6 +195,7 @@ function userInput(){
     questionsEl.appendChild(initialsInput);
 
     submitButton = document.createElement('button');
+    // submitButton.setAttribute('id', "disable-button")
     submitButton.textContent = "Submit";
     questionsEl.appendChild(submitButton);
     
@@ -213,9 +204,10 @@ function userInput(){
         var userInitials = initialsInput.value;
 
         
-        if (userInitials === "") {
+        if (userInitials.length !== 2) {
             console.log('No value entered');
-            // return userInput();
+            alert("Please input 2 initials");
+            return;
         } else {
             userScore = {
                 initials: userInitials,
@@ -228,76 +220,15 @@ function userInput(){
         localStorage.setItem("highscores", JSON.stringify(highscores));
 
         console.log(highscores);
-        // localStorage.setItem("storedScore", JSON.stringify(userScore));
-        // allScores.push(userScore);
-        // localStorage.setItem("allStoredScores", JSON.stringify(allScores));
-        // console.log(allScores);
-        
-        
-        // setScore();
-        
-        
-        // localStorage.setItem("storedInitials", userScore.initials);
-        
-        
-        // console.log(userScore);
-        
-        // var userScores = localStorage.getItem("userScore");
-        // if (userScores === null){
-            //     userScores = [];
-            // } else {
-                //     userScores = JSON.parse(userScores);
-                //     console.log(JSON.stringify(userScore.initials));
-                //     console.log(userScore.score);
-                //     console.log(userScores);
-                // }
-                // userScores.push(userScore);
-                // var newScore = JSON.stringify(userScores);
-                // localStorage.setItem("userScores", newScore);
-                
-                
-    })
-};
+         
     
-        
-// function setScore(){
-//     var lastScore = JSON.parse(localStorage.getItem("storedScore"));
-//     console.log(lastScore);
-//     // console.log(allScores);
-//     for (var i = 0; i < 5; i++){
-//         liEl = document.createElement("li");
-//         liEl.textContent = lastScore[i].initials + ": " + lastScore[i].score;
-//         highscoreList.appendChild(liEl);
-//     };
-// };
-
+    })
+            
+};
 
 
 function setWin(){
     localStorage.setItem("storedScore", timeLeft);
 };
-
-function getWin(){
-    // var storedScores = localStorage.getItem("userScore");
-    
-}
-// function endGame() {
-//     if (win === true) {
-//         questionsEl.innerHTML = '';
-//         console.log("Congrats! You win!");
-//     } else if (lose === true) {
-//         lose = false;
-//         questionsEl.innerHTML = '';
-//         console.log("Uh oh! You ran out of time... GAME OVER!");
-//         var restart = document.createElement ('h2')
-//         restart.textContent = "Game Over!"
-//         var restartButton = document.createElement ('button');
-//         restartButton.textContent = "Restart";
-//         questionsEl.appendChild(restart);
-//         questionsEl.appendChild(restartButton);
-//         restartButton.addEventListener("click", restartGame);
-//     };
-    
-// }
 
 startQuizButton.addEventListener("click", startQuiz);
