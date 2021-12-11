@@ -6,24 +6,6 @@ html {
     font-size: 62.5%;
 }
 
-.site-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 2rem;
-    padding: 1rem;
-  }
-
-.top-margin {
-  margin-top: 6rem
-}
-
-.wrapper {
-    margin: 100px auto 0 auto;
-    max-width: 600px;
-    text-align: center;
-  }
-
 button {
     padding: 0.4rem 2rem;
     font-size: 3rem;
@@ -32,16 +14,6 @@ button {
     color: white;
     margin: 0 1rem;
 }
-
-.choice-buttons {
-    display:block;
-    margin: .5rem;
-}
-
-/* .restart-button {
-    display: block;
-    margin: 2rem 0;
-} */
 
 h1 {
     font-size: 4.5rem;
@@ -58,10 +30,6 @@ h2 {
     margin-bottom: 4rem;
 }
 
-.hide {
-    display: none;
-}
-
 label {
     font-size: 2rem;
 }
@@ -76,6 +44,33 @@ li {
     background-color: #8ADEB47F;
     padding: 1rem;
     margin: 1rem;
+}
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+.wrapper {
+    margin: 100px auto 0 auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+.choice-buttons {
+    display:block;
+    margin: .5rem;
+}
+
+.top-margin {
+  margin-top: 6rem
+}
+
+.hide {
+    display: none;
 }
 
 .block{
