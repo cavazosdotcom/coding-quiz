@@ -67,6 +67,8 @@ On start click,
     timer started
 
 - create h2, textContent for questions[0]
+
     create buttons, textContent for questions[1]
     validate on click, if questions[2], validate correct, else wrong
+
 
