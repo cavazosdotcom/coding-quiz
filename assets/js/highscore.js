@@ -9,20 +9,20 @@ clear.addEventListener("click", function(){
 });
 
 
-var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-
-
-highscores.sort(function (a, b) {
-    return b.score - a.score;
-});
-
-console.log(highscores);
 
 
 function setScores() {
-    for (var i=0; i<5; i++){
+    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    
+    
+    highscores.sort(function (a, b) {
+        return b.score - a.score;
+    });
+    
+    console.log(highscores);
+    for (let i=0; i<highscores.length && i<5 ; i++){
         liEl = document.createElement('li');
-        liEl.textContent = highscores[i].initials + " - " + highscores[i].score;
+        liEl.textContent = `${highscores[i].initials} - ${highscores[i].score}`;
         highscoreList.appendChild(liEl);
     };
 };
