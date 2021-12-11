@@ -143,8 +143,8 @@ function renderQuestion() {
 
 // function to dictate whether the user choice is correct ot false
 function answerQuestion(event) {
-    console.log(questions[questionPointer].correct);
-    console.log(`event:${event.target.value}`);
+    // console.log(questions[questionPointer].correct);
+    // console.log(`event:${event.target.value}`);
     // on the event that the user clicks the target(button), the value of that is evaluated
     if (event.target.value === questions[questionPointer].correct) {
         console.log('Correct');
@@ -187,7 +187,7 @@ function endQuiz() {
     questionsEl.innerHTML = '';
     // if the user wins the timer is cleared, they won, then the input for user initials to track score is created
     if (win === true) {
-        // win = false;
+        
         clearInterval(timerInterval);
         // sets time to show real time left in case user gets last question wrong
         timer.textContent = `Time: ${timeLeft}`;
@@ -246,7 +246,7 @@ function userInput(){
 
         // if the input isn't 2 characters, then alerts user and gives opportunity to re-input
         if (userInitials.length !== 2) {
-            console.log('No value entered');
+            // console.log('No value entered');
             alert('Please input 2 initials');
             return;
             // if initials are valid, then store the initials and score in an object as key value pairs
@@ -263,7 +263,7 @@ function userInput(){
         // sets the highscores array into local storage to be retrieved later
         localStorage.setItem('highscores', JSON.stringify(highscores));
 
-        console.log(highscores);
+        // console.log(highscores);
         
         // when submit is clicked, take user to the highscores page
         window.location.href = './high-scores.html'

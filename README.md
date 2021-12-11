@@ -19,6 +19,8 @@ A multiple choice quiz that, on pressing a start button, should generate a rando
 
 - This was, so far, the most challenging project for me. Having to do more complex functions in JS was difficult to work through. Starting from scratch was good practice to experience the full development process for this kind of page, and having to think outside the box lots of times, most to no avail, was the best part about this project. I want to practice more with template literals because they seem very practical in complex projects, and having those become second nature will surely have great benefits. Every challenge in this felt uphill having to work through them, but I'm happy I stuck through and made a project I'm proud of. There are a few things I still want to add to go above and beyond but I can do that after I've caught up to everything.
 
+The one thing I still want to work on the most is adding text to the page that tells the user if their answers are correct or incorrect, I just need to make a function that makes the text only appear for a certain amount of time then hide from the page.
+
 # CSS
 
 - After banging my head against a wall for most of HW2 with our portfilios, CSS has begun to make A LOT more sense to me. The hurdle of HW2 seems so easy now compared to when I accomplished it a few weeks ago. Although flexboxes are still a beast among itself
